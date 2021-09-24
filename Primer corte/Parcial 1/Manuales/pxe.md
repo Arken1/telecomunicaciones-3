@@ -117,7 +117,7 @@ Luego, creamos una maquina nueva, mediante `ORACLE VM` la cual contenga:
     - Habilitar I/O APIC
     - Reloj hardware en tiempo UTC
 - En los privilegios de red:
-  - Se establezca la red interna la red lan definida para la maquina virtual en el `VagrantFile`
+  - Se establesca la red interna la red lan definida para la maquina virtual en el `VagrantFile`
 
 Posterior, iniciamos la nueva maquina donde notaremos la solicitud de conexión a la red lan que espera una respuesta por DHCP.
 
