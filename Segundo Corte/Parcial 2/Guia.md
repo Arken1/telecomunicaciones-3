@@ -178,6 +178,14 @@ firewall-cmd --permanent --zone=dmz --add-service=tftp
 
 Para la conexion vsftp debemos habilitar el puerto de SSL 9122 para no interrumpir la conexion ssh
 
+En maquina de servicios
+
+```apache
+vim /etc/ssh/sshd_config
+```
+
+En firewall
+
 ```apache
 firewall-cmd --add-port 9122/tcp --permanent
 
