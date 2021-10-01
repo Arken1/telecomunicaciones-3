@@ -7,6 +7,26 @@ Es un protocolo de red para la transferencia de archivos entre sistemas conectad
 | FTP (activo) | `20`   |
 | FTP (pasivo) | `21`   |
 
+## Contenido
+
+- [FTP (File Transfer Protocol)](#ftp-file-transfer-protocol)
+  - [Contenido](#contenido)
+  - [Servidor VSFTPD (Very Secure FTP Daemon)](#servidor-vsftpd-very-secure-ftp-daemon)
+    - [Comandos del servicios](#comandos-del-servicios)
+    - [Archivo de configuración](#archivo-de-configuración)
+    - [Usuarios](#usuarios)
+      - [Crear usuario](#crear-usuario)
+      - [Crear contraseña](#crear-contraseña)
+      - [Borrar usuario](#borrar-usuario)
+      - [Modificar usuario](#modificar-usuario)
+      - [Lista de usuarios](#lista-de-usuarios)
+      - [Archivo de usuarios root](#archivo-de-usuarios-root)
+      - [Archivo de usuarios bloqueados](#archivo-de-usuarios-bloqueados)
+      - [Set the root directory for files available via FTP](#set-the-root-directory-for-files-available-via-ftp)
+    - [Consultas desde el Cliente](#consultas-desde-el-cliente)
+  - [Usuarios creados](#usuarios-creados)
+  - [Referencias](#referencias)
+
 ## Servidor VSFTPD (Very Secure FTP Daemon)
 
 !comando
@@ -89,6 +109,28 @@ ftp 192.168.50.3
 mslookup
 ```
 
+Guia de comandos
+
+| Command              | Description                                                                                                                                                                  |
+| -------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| bye / close / quit | Terminates an FTP connection.                                                                                                                                                |
+| cd                   | Changes the current working directory on the FTP host server.                                                                                                                |
+| cwd                  | Changes the current directory to the specified remote directory.                                                                                                             |
+| dir                  | Requests a directory of files uploaded or available for download.                                                                                                            |
+| get                  | Downloads a single file.                                                                                                                                                     |
+| ls                   | Requests a list of file names uploaded or available for download.                                                                                                            |
+| mget                 | Interactively downloads multiple files.                                                                                                                                      |
+| mput                 | Interactively uploads multiple files.                                                                                                                                        |
+| open                 | Starts an FTP connection.                                                                                                                                                    |
+| pasv                 | Tells the server to enter passive mode, in which the server waits for the client to establish a connection rather than attempting to connect to a port the client specifies. |
+| put                  | Uploads a single file.                                                                                                                                                       |
+| pwd                  | Queries the current working directory.                                                                                                                                       |
+| ren                  | Renames or moves a file.                                                                                                                                                     |
+| site                 | Executes a site-specific command.                                                                                                                                            |
+| type                 | Sets the file transfer mode: ASCII,Binary                                                                                                                                    |
+
+Tomado de [^2]
+
 ## Usuarios creados
 
 | username     | access      | note              | directory                       |
@@ -104,7 +146,10 @@ mslookup
 
 > [!NOTE]
 > Contraseña por defecto para todos los usuarios `1234`
+> Puede visitar el repositorio de invitado, por el usuario `guest` y password `guest`
+> Puede visitar el repositorio publico, por el usuario `anonymous`
 
 ## Referencias
 
 [^1]: [Instalar servidor FTP y restringir permisos a los usuarios](https://rootear.com/ubuntu-linux/instalar-servidor-ftp)
+[^2]: [Summary of FTP Client Commands](https://www.ibm.com/docs/en/scbn?topic=SSRJDU/gateway_services/ftp_globalec/SCN_Summary_of_FTP_Client_Commands_b.html)

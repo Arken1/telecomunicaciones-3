@@ -16,7 +16,8 @@
       - [Habilitar los servicios](#habilitar-los-servicios)
       - [Ignorar etiquetas](#ignorar-etiquetas)
     - [Cliente](#cliente)
-    - [Consultar](#consultar)
+      - [Configuración](#configuración)
+      - [Consultas](#consultas)
   - [Otros](#otros)
   - [Referencias](#referencias)
 
@@ -142,7 +143,7 @@ firewall-cmd --reload
 firewall-cmd --permanent --zone=dmz --add-masquerade
 firewall-cmd --permanent --zone=internal --add-masquerade
 
-D [^1]
+[^1]
 
 ### Segunda version
 
@@ -190,6 +191,7 @@ firewall-cmd --zone=internal --list-all
 
 #### Bloquear http
 
+```apache
 sudo firewall-cmd --zone=dmz --add-rich-rule 'rule family="ipv4" source address="192.168.100.4" port port=80 protocol=tcp reject'
 
 firewall-cmd --permanent --zone=dmz --add-icmp-block=echo-reply
@@ -202,7 +204,7 @@ firewall-cmd --reload
 
 firewall-cmd --permanent --zone=dmz --add-icmp-block=echo-reply
 firewall-cmd --permanent --zone=dmz --add-icmp-block=echo-request
-
+```
 
 #### Mascaras
 
@@ -216,19 +218,14 @@ firewall-cmd --zone=internal --list-all
 
 #### Habilitar los servicios
 
+En la maquina Firewall
+
 ```apache
 firewall-cmd --zone=internal --add-service=http --permanent
 firewall-cmd --zone=internal --add-service=https --permanent
 firewall-cmd --reload
 firewall-cmd --zone=dmz --list-all
 firewall-cmd --zone=internal --list-all
-```
-
-
-En el cliente
-
-```apache
-curl https://192.168.100.4/ -k
 ```
 
 #### Ignorar etiquetas
@@ -243,7 +240,7 @@ firewall-cmd --reload
 
 ### Cliente
 
-### Consultar
+#### Configuración
 
 ```apache
 vim /etc/sysconfig/network
@@ -257,12 +254,26 @@ Adicionar la gateway
 GATEWAY=192.168.100.3
 ```
 
-Se debe reiniciar el servicio, borrar la conpuerta por defecto de vagrant y verficar en la tabla
+Se debe reiniciar el servicio, borrar la compuerta por defecto de vagrant y verificar en la tabla
 
 ```apache
 service network restart
 route del -net 0.0.0.0 gw 10.0.2.2 netmask 0.0.0.0 dev eth0
 netstat -rn
+```
+
+#### Consultas
+
+Realizamos una consulta no segura que nos debe mostrar la pagina por defecto alojada en la maquina Firewall
+
+```apache
+curl https://192.168.100.4/ -k
+```
+
+Realizamos una consulta segura que nos debe mostrar la pagina por defecto alojada en la maquina de servicios
+
+```apache
+curl https://192.168.100.4/ -k
 ```
 
 --

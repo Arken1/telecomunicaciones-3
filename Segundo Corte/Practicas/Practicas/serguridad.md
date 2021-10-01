@@ -67,12 +67,6 @@ openssl genrsa -out ca.key 1024
 openssl req -new -key ca.key -out ca.csr
 ```
 
-|Column1  |Column2  |
-|---------|---------|
-|Row1     |         |
-|Row2     |         |
-|Row3     |         |
-
 Datos del certificado
 
 ```apache
