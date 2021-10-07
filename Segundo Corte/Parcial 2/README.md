@@ -19,4 +19,4 @@ Para el seguimiento de la practica se realizaron dos manuales referentes a cada 
 
 ## Guias
 
-- k
+- [Guia principal](Guia.md)
